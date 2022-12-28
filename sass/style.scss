@@ -1,0 +1,139 @@
+$white: #f8f8f8;
+$white2: #fff;
+$white3: #f9f9f9;
+$white4: #dfdfdf;
+$white5: #DDD;
+$blue: #0075ff;
+
+
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins'
+  }
+
+  input[type=radio] {
+	accent-color: $blue;
+}
+
+  .quiz-app{
+    margin: 77px  auto;
+    width: 800px;
+    padding: 15px;
+    background-color: $white;
+    
+        .quiz-info {
+            background-color: $white2;
+            padding: 20px;
+            display: flex;
+            
+
+            
+        }
+        .category{
+            flex: 1px;
+        }
+        .cout{
+            flex: 1px;
+            text-align: right;
+        }
+        .quiz-area{
+            background-color: $white2;
+            padding: 20px;
+            margin-top: 15px;
+            
+            h2{
+                margin: 0;
+            }
+
+        }
+        .answer-area{
+            background-color: $white2;
+            padding: 20px;
+            margin-top: 5px;
+            .anser{
+                background-color: $white3;
+                padding: 15px;
+                border-bottom: 1px solid $white4;
+                input[type="radio"]{
+                    &:checked {
+                                    + {
+                                        label {
+                                            color: $blue;
+
+                                        }
+                                    }
+                                } 
+                }
+                label {
+                    cursor: pointer;
+                    font-weight: bold;
+                    color: #777;
+                    font-size: 14px;
+                    margin-left: 5px;
+                    position: relative;
+                    top: -1px;
+                }
+            }
+        }
+        
+        .submit-button {
+            background-color: $blue;
+            display: block;
+            width: 40%;
+            padding: 10px 15px;
+            color: $white2;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin: 20px;
+            margin-left: 30%;
+            
+            &:focus{
+                outline: none;
+            }
+
+        }
+        .bullets{
+            border-top: 1px solid $white4;
+            background-color: $white2;
+            display: flex;
+            padding: 20px;
+            .spans{
+                flex: 1;
+                display: flex;
+
+                span{
+
+                    width: 20px;
+                    height: 20px;
+                    background-color: $white5;
+                    margin-right: 5px;
+                    border-radius: 50px;
+                    &.on{
+                        background-color: $blue;
+
+                    }
+                }
+            }
+        }
+        .results{
+            span {
+                font-weight: bold;
+                &.bad {
+                    color: #dc0a0a;
+                }
+                &.good {
+                    color: #009688;
+                }
+
+                &.perfect {
+                    color: $blue;
+                }
+            }
+            
+        }
+       
+  }

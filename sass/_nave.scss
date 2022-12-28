@@ -1,0 +1,146 @@
+$color_1: #4B6587;
+$color_2: #fff;
+$font-family_1: pop;
+$background-color_1: #ffffff;
+$background-color_2: rgba(68, 68, 68, 0.781);
+$background-color_3: #2b8847;
+
+@import "https://fonts.googleapis.com/css2?family=Poppins&display=swap";
+/* Progress Div Css  */
+/* Active Css  */
+/* Responsive Css  */
+/* @media (max-width: 980px) {
+      ul {
+        flex-direction: column;
+      }
+      ul li {
+        flex-direction: row;
+      }
+      ul li .progress {
+        margin: 0 30px;
+      }
+      .progress::after {
+        width: 5px;
+        height: 55px;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: -1;
+      }
+      .one::after {
+        height: 0;
+      }
+      ul li .icon {
+        margin: 15px 0;
+      }
+    } */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: $background-color_1;
+}
+.main {
+	width: 100%;
+	height: 8vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: $font-family_1;
+	flex-direction: column;
+}
+ul {
+	display: flex;
+	margin-top: 80px;
+	li {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.icon {
+			font-size: 35px;
+			color: $color_1;
+			margin: 0 60px;
+		}
+		.text {
+			font-size: 14px;
+			font-weight: 600;
+			color: $color_1;
+		}
+		.progress {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: $background-color_2;
+			margin: 14px 0;
+			display: grid;
+			place-items: center;
+			color: $color_2;
+			position: relative;
+			cursor: pointer;
+			.uil {
+				display: none;
+			}
+			p {
+				font-size: 13px;
+			}
+		}
+		.active {
+			background-color: $background-color_3;
+			display: grid;
+			place-items: center;
+			p {
+				display: none;
+			}
+			.uil {
+				font-size: 20px;
+				display: flex;
+			}
+		}
+	}
+}
+.progress {
+	&::after {
+		content: " ";
+		position: absolute;
+		width: 125px;
+		height: 5px;
+		background-color: $background-color_2;
+		right: 30px;
+	}
+}
+.one {
+	&::after {
+		width: 0;
+		height: 0;
+	}
+}
+li {
+	.active {
+		&::after {
+			background-color: $background-color_3;
+		}
+	}
+}
+@media (max-width: 600px) {
+	.head {
+		.head_1 {
+			font-size: 24px;
+		}
+		.head_2 {
+			font-size: 16px;
+		}
+	}
+}
+@media (max-width: 880px) {
+	.main {
+		margin-bottom: 97px !important;
+	}
+}
+@media (max-width: 1014px) {
+	.main {
+		margin-bottom: 27px;
+	}
+}
