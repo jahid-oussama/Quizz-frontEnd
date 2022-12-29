@@ -263,6 +263,7 @@ function showResults(count) {
                     mainDiv.appendChild(correctAnswer);
                     mainDiv.appendChild(Right_answer);
                     mainDiv.appendChild(br);
+                    four.classList.add("active");
 
                 } else {
                     // console.log("b");
@@ -333,15 +334,6 @@ function countdown(duration, count) {
     }
 
 }
+document.getElementById("full_name1").innerText = sessionStorage.getItem("full_name");
 
-
-// function getname() {
-//     sessionStorage.setItem("user", document.getElementById("full_name").value);
-//   }
-//   let name = sessionStorage.getItem("user");
-//   document.getElementById("full_name1").innerText = `Hello`  + name;
-
-
-
-
-document.getElementById("full_name").innerText = sessionStorage.getItem("full_name");
+// document.getElementById("full_name").innerText = sessionStorage.getItem("full_name");
