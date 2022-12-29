@@ -7,8 +7,12 @@ let answersArea = document.querySelector(".answer-area");
 let submitButton = document.querySelector(".submit-button");
 let resultsContainer = document.querySelector(".results");
 let countdownElement = document.querySelector(".countdown");
+let wrongAnswers = [];
+let questionsObject = [];
+let mainDiv;
+let odata = [];
 
-let  countQ;
+let countQ;
 // setting options
 let currentIndex = 0;
 let rightAnswer = 0;
@@ -22,8 +26,11 @@ function getQuestions() {
 
     myRequest.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            let questionsObject = JSON.parse(this.responseText);
-            let questionsCount = questionsObject.length;
+            odata = JSON.parse(this.responseText);
+            questionsObject = odata.slice().sort(function () {
+                return 0.5 - Math.random();
+            });
+            let questionsCount = odata.length;
             // console.log(questionsCount); 
 
             //  creat BUllets + set Questions count 
@@ -75,6 +82,7 @@ function getQuestions() {
 
     myRequest.open("GET", "html_questions.json", true);
     myRequest.send();
+
 }
 getQuestions();
 // function that creat bullets
@@ -117,7 +125,7 @@ function addQuestionData(obj, count) {
         for (let i = 1; i <= 4; i++) {
 
             // creat Main answer div 
-            let mainDiv = document.createElement("div");
+            mainDiv = document.createElement("div");
 
             // add class to the main div
             mainDiv.className = 'answer'
@@ -167,6 +175,7 @@ function checkAnswer(rAnswer, count) {
 
     // select all the answers
     let answers = document.getElementsByName("question");
+    let wquestion = document.querySelector(".quiz-area h2");
     let theChoosenAnswer;
 
     // console.log(answers.length);
@@ -183,6 +192,9 @@ function checkAnswer(rAnswer, count) {
     if (rAnswer[0] === theChoosenAnswer[0]) {
         rightAnswer++;
         // console.log("good Answer");
+    } else {
+        wrongAnswers.push(wquestion.innerText);
+        // console.log(wrongAnswers);
     }
 
 }
@@ -210,7 +222,7 @@ function showResults(count) {
     if (currentIndex === count) {
 
         countQ = count;
-        console.log("fin question");
+        // console.log("fin question");
 
 
         //hahiya ---------------------------------------------------------------------
@@ -219,7 +231,49 @@ function showResults(count) {
         //hahiya ---------------------------------------------------------------------
 
         quizeArea.remove();
-        answersArea.remove();
+        // answersArea.remove();
+        answersArea.innerHTML = "";
+        mainDiv = document.createElement("div");
+        // let po = [];
+        questionsObject.forEach(element => {
+            wrongAnswers.forEach(welement => {
+                // console.log(welement + " - " + element.title);
+                if (welement == element.title) {
+                    // po.push(element);
+                    // Creat H2 Question title
+                    let questionTitle = document.createElement("h2");
+                    let correctAnswer = document.createElement("p");
+                    let Right_answer = document.createElement("p");
+                    let br = document.createElement("br");
+
+                    // Creat Question text
+                    let questionText = document.createTextNode(element.title);
+                    let rightText = document.createTextNode(element.right_answer);
+                    let correctText = document.createTextNode(element.correct);
+                    questionTitle.appendChild(questionText);
+                    correctAnswer.appendChild(correctText);
+                    Right_answer.appendChild(rightText);
+                    // console.log(element);
+                    // add text to H2
+
+
+                    // add the H2 to the quizeArea
+
+                    mainDiv.appendChild(questionTitle);
+                    mainDiv.appendChild(correctAnswer);
+                    mainDiv.appendChild(Right_answer);
+                    mainDiv.appendChild(br);
+
+                } else {
+                    // console.log("b");
+                }
+
+            });
+        });
+        // console.log(po)
+
+
+        answersArea.appendChild(mainDiv);
         submitButton.remove();
         bullets.remove();
 
